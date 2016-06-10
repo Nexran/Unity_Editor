@@ -1,0 +1,6 @@
+
+#Common Ignores
+Library
+*.csproj
+*.sln
+*.userprefs
