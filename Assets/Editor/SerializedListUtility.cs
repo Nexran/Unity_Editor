@@ -59,7 +59,15 @@ public static class SerializedListUtility
 		BeginColorButton(Color.green);
 		if(GUILayout.Button(addButtonContent, EditorStyles.miniButton))
 		{
-			list.arraySize += 1;
+			int size = list.arraySize;
+			list.InsertArrayElementAtIndex(size);
+
+			//	clear out the reference value once we insert into the array
+			//	by default it will take the last element value and reassign it
+			if(list.GetArrayElementAtIndex(size).objectReferenceValue != null)
+			{
+				list.GetArrayElementAtIndex(size).objectReferenceValue = null;
+			}
 		}
 		EndColorButton();
 	}
@@ -87,16 +95,12 @@ public static class SerializedListUtility
 		BeginColorButton(Color.red);
 		if(GUILayout.Button(deleteButtonContent, EditorStyles.miniButtonRight, miniButtonWidth))
 		{
-			int oldSize = list.arraySize;
-
-			//	this clears out the array element
-			list.DeleteArrayElementAtIndex(index);
-
-			//	this deletes the element completely
-			if(list.arraySize == oldSize)
+			//	clear out the reference then delete the element
+			if(list.GetArrayElementAtIndex(index).objectReferenceValue != null)
 			{
 				list.DeleteArrayElementAtIndex(index);
 			}
+			list.DeleteArrayElementAtIndex(index);
 		}
 		EndColorButton();
 	}
