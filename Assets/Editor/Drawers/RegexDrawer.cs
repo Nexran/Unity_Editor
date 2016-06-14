@@ -2,6 +2,8 @@
 using UnityEngine;
 using System.Text.RegularExpressions;
 
+[CustomPropertyDrawer(typeof (PhoneAttribute))]
+[CustomPropertyDrawer(typeof (URLAttribute))]
 [CustomPropertyDrawer(typeof (IPAddressAttribute))]
 [CustomPropertyDrawer(typeof (EmailAttribute))]
 [CustomPropertyDrawer(typeof (RegexAttribute))]

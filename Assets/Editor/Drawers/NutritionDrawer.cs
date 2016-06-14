@@ -14,7 +14,7 @@ public class NutritionDrawer : PropertyDrawer
 		EditorGUI.BeginProperty(position, label, property);
 
 		// Draw label
-		position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID (FocusType.Passive), label);
+		position = EditorGUI.PrefixLabel(position, label);
 
 		EditorGUI.PropertyField(new Rect (position.x - 120, position.y + 20, position.width + 120, 20), calories);
 		EditorGUI.PropertyField(new Rect (position.x - 120, position.y + 40, position.width + 120, 20), servingSize);

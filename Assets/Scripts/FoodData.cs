@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Food data that stores all base food variables. 
@@ -22,7 +23,7 @@ public class FoodData : ScriptableObject
 	[SerializeField]
 	[Range(0f, 5f)]
 	[Header("Random Settings")]
-	[Space(50)]
+	[Space(10)]
 	private float _range;
 
 	[SerializeField]
@@ -40,9 +41,13 @@ public class FoodData : ScriptableObject
 	private Nutrition [] _nutritions;
 
 	[SerializeField]
+	[FormerlySerializedAs("_curve")]
 	private AnimationCurve _curve;
 
+	[Header("Server Settings")]
+
 	[SerializeField]
+	[Space(10)]
 	[Regex(@"^(?:\d{1,3}\.){3}\d{1,3}$", "Invalid IP address! Example: '192.168.1.1'")]
 	//[IPAddressAttribute]
 	private string _serverAddress;
@@ -50,6 +55,14 @@ public class FoodData : ScriptableObject
 	[SerializeField]
 	[Email]
 	private string _email;
+
+	[SerializeField]
+	[URL]
+	private string _url;
+
+	[SerializeField]
+	[Phone]
+	private string _phone;
 
 	public string Name { get { return _name; } }
 	public string [] Names { get { return _names ; } } 
