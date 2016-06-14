@@ -61,13 +61,7 @@ public static class SerializedListUtility
 		{
 			int size = list.arraySize;
 			list.InsertArrayElementAtIndex(size);
-
-			//	clear out the reference value once we insert into the array
-			//	by default it will take the last element value and reassign it
-			if(list.GetArrayElementAtIndex(size).objectReferenceValue != null)
-			{
-				list.GetArrayElementAtIndex(size).objectReferenceValue = null;
-			}
+			ClearArrayElement(list, size);
 		}
 		EndColorButton();
 	}
@@ -95,14 +89,32 @@ public static class SerializedListUtility
 		BeginColorButton(Color.red);
 		if(GUILayout.Button(deleteButtonContent, EditorStyles.miniButtonRight, miniButtonWidth))
 		{
-			//	clear out the reference then delete the element
-			if(list.GetArrayElementAtIndex(index).objectReferenceValue != null)
-			{
-				list.DeleteArrayElementAtIndex(index);
-			}
+			ClearArrayElement(list, index);
 			list.DeleteArrayElementAtIndex(index);
 		}
 		EndColorButton();
+	}
+
+	private static void ClearArrayElement(SerializedProperty list, int index)
+	{
+		SerializedProperty arrayElement = list.GetArrayElementAtIndex(index);
+		if(arrayElement != null)
+		{
+			switch(arrayElement.propertyType)
+			{
+				case SerializedPropertyType.ObjectReference:
+				{
+					if(arrayElement.objectReferenceValue != null) {  arrayElement.objectReferenceValue = null; }
+				}
+				break;
+
+				case SerializedPropertyType.String:
+				{
+					if(arrayElement.stringValue != null) { arrayElement.stringValue = string.Empty; }
+				}
+				break;
+			}
+		}
 	}
 
 	/// <summary>
