@@ -6,11 +6,11 @@ using UnityEngine;
 /// </summary>
 public static class SerializedListUtility
 {
-	private static GUIContent moveDownButtonContent = new GUIContent("\u2193", "Move Down");
-	private static GUIContent moveUpButtonContent = new GUIContent("\u2191", "Move Up");
-	private static GUIContent deleteButtonContent = new GUIContent("-", "Delete");
-	private static GUIContent addButtonContent = new GUIContent("Add Element", "Add Element to Array");	
-	private static GUILayoutOption miniButtonWidth = GUILayout.Width(20f);
+	private static GUIContent _moveDownButtonContent = new GUIContent("\u2193", "Move Down");
+	private static GUIContent _moveUpButtonContent = new GUIContent("\u2191", "Move Up");
+	private static GUIContent _deleteButtonContent = new GUIContent("-", "Delete");
+	private static GUIContent _addButtonContent = new GUIContent("Add Element", "Add Element to Array");	
+	private static GUILayoutOption _miniButtonWidth = GUILayout.Width(20f);
 	private static Color _backgroundColor;
 
 	public static void Show(SerializedProperty list)
@@ -57,7 +57,7 @@ public static class SerializedListUtility
 
 		//	SHOW an ADD BUTTON
 		BeginColorButton(Color.green);
-		if(GUILayout.Button(addButtonContent, EditorStyles.miniButton))
+		if(GUILayout.Button(_addButtonContent, EditorStyles.miniButton))
 		{
 			int size = list.arraySize;
 			list.InsertArrayElementAtIndex(size);
@@ -74,20 +74,20 @@ public static class SerializedListUtility
 	private static void ShowButtons(SerializedProperty list, int index)
 	{
 		//	SHOW a MOVE DOWN BUTTON
-		if(GUILayout.Button(moveDownButtonContent, EditorStyles.miniButtonLeft, miniButtonWidth))
+		if(GUILayout.Button(_moveDownButtonContent, EditorStyles.miniButtonLeft, _miniButtonWidth))
 		{
 			list.MoveArrayElement(index, index + 1);
 		}
 
 		//	SHOW a MOVE UP BUTTON
-		if(GUILayout.Button(moveUpButtonContent, EditorStyles.miniButtonMid, miniButtonWidth))
+		if(GUILayout.Button(_moveUpButtonContent, EditorStyles.miniButtonMid, _miniButtonWidth))
 		{
 			list.MoveArrayElement(index, index - 1);
 		}
 
 		//	SHOW a DELETE BUTTON
 		BeginColorButton(Color.red);
-		if(GUILayout.Button(deleteButtonContent, EditorStyles.miniButtonRight, miniButtonWidth))
+		if(GUILayout.Button(_deleteButtonContent, EditorStyles.miniButtonRight, _miniButtonWidth))
 		{
 			ClearArrayElement(list, index);
 			list.DeleteArrayElementAtIndex(index);

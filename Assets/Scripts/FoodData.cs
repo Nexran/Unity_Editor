@@ -74,7 +74,7 @@ public class FoodData : ScriptableObject
 	public string ServerAddress { get { return _serverAddress; } }
 
 	/// <summary>
-	/// Unity funciton, Resets this instance.
+	/// Unity function, Resets this instance.
 	/// </summary>
 	public void Reset()
 	{
@@ -89,7 +89,7 @@ public class FoodData : ScriptableObject
 
 	private void RandomizeName() 
 	{
-		string [] names = { "Carbonara", "Lasagne", "Linguini", "Ravioli", "Tortellini", "Ziti" };
+		string [] names = { "Carbonara", "Lasagna", "Linguini", "Ravioli", "Tortellini", "Ziti" };
 		int random = Random.Range(0, names.Length);
 		_name = names[random];
 	}

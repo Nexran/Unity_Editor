@@ -14,8 +14,8 @@ using System.Text.RegularExpressions;
 public class RegexDrawer : PropertyDrawer 
 {
 	// These constants describe the height of the help box and the text field.
-	const int helpHeight = 30;
-	const int textHeight = 16;
+	private const int _helpHeight = 30;
+	private const int _textHeight = 16;
 
 	// Provide easy access to the RegexAttribute for reading information from it.
 	RegexAttribute regexAttribute{ get { return ((RegexAttribute)attribute); } }// Here you must define the height of your property drawer. Called by Unity.
@@ -24,7 +24,7 @@ public class RegexDrawer : PropertyDrawer
 		if (IsValid (prop))
 			return base.GetPropertyHeight (prop, label);
 		else
-			return base.GetPropertyHeight (prop, label) + helpHeight;
+			return base.GetPropertyHeight (prop, label) + _helpHeight;
 	}
 
 	// Here you can define the GUI for your property drawer. Called by Unity.
@@ -32,13 +32,13 @@ public class RegexDrawer : PropertyDrawer
 	{
 		// Adjust height of the text field
 		Rect textFieldPosition = position;
-		textFieldPosition.height = textHeight;
+		textFieldPosition.height = _textHeight;
 		DrawTextField (textFieldPosition, prop, label);
 
 		// Adjust the help box position to appear indented underneath the text field.
 		Rect helpPosition = EditorGUI.IndentedRect (position);
-		helpPosition.y += textHeight;
-		helpPosition.height = helpHeight;
+		helpPosition.y += _textHeight;
+		helpPosition.height = _helpHeight;
 		DrawHelpBox (helpPosition, prop);
 	}
 
