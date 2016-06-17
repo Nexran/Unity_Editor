@@ -2,11 +2,7 @@
 using UnityEngine;
 using System.Text.RegularExpressions;
 
-[CustomPropertyDrawer(typeof (PhoneAttribute))]
-[CustomPropertyDrawer(typeof (URLAttribute))]
-[CustomPropertyDrawer(typeof (IPAddressAttribute))]
-[CustomPropertyDrawer(typeof (EmailAttribute))]
-[CustomPropertyDrawer(typeof (RegexAttribute))]
+[CustomPropertyDrawer(typeof (RegexAttribute), true)]
 /// <summary>
 /// Regex drawer, taken from Unity 4 example code. 
 /// http://blogs.unity3d.com/2012/09/07/property-drawers-in-unity-4/
@@ -19,6 +15,7 @@ public class RegexDrawer : PropertyDrawer
 
 	// Provide easy access to the RegexAttribute for reading information from it.
 	RegexAttribute regexAttribute{ get { return ((RegexAttribute)attribute); } }// Here you must define the height of your property drawer. Called by Unity.
+
 	public override float GetPropertyHeight (SerializedProperty prop, GUIContent label) 
 	{
 		if (IsValid (prop))
